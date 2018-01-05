@@ -1,0 +1,225 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="ccrm.list">
+      <field name="name">CCRM list</field>
+      <field name="model">ccrm.ccrm</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="ccrm.action_window">
+      <field name="name">CCRM window</field>
+      <field name="res_model">ccrm.ccrm</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="ccrm.action_server">
+      <field name="name">CCRM server</field>
+      <field name="model_id" ref="model_ccrm_ccrm"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    
+    <menuitem name="CCRM" id="base.menu_student_root" web_icon="purchase,static/description/icon.png" sequence="99"/>
+   
+    <!-- menu categories -->
+    
+    <menuitem name="Student Portal" id="menu_student_info" parent="base.menu_student_root" sequence="2"/>
+    <!--<menuitem name="Menu 2" id="ccrm.menu_2" parent="ccrm.menu_root"/>
+    -->
+
+    <!--Form view-->
+    <record id="view_student_personal_details_form" model="ir.ui.view">
+	<field name="name">student.personal.details.form</field>
+	<field name="model">student.personal.details</field>
+	<field name="arch" type="xml">
+	    <form string="Student">
+		<sheet>
+		    <field name="image" widget="image" class="oe_avatar"/>
+		    <div class="oe_title">
+			<h1>
+			    <field name="name" default_focus="1" placeholder="Name"/>
+			</h1>
+		    </div>
+	<group>
+		<group>
+		    <field name="email" placeholder="Email_ID"/>
+		    <field name="postal_address" placeholder="Postal_Address"/>
+		    <field name="personal_address" placeholder="Personal_Address"/>
+		    <field name="course" placeholder="Course" widget="selection"/>
+		    <field name="branch" placeholder="Branch" widget="selection"/>
+               	    <field name="en_no" placeholder="En_No"/>
+		    <field name="pass_out_year" placeholder="Pass_Out_Year"/>
+		    <field name="gender" placeholder="Gender" widget="selection"/>
+		    <field name="dob" placeholder="DOB"/>
+		    <field name="carrier_option" placeholder="Carrier_Option" widget="selection"/>
+		    <field name="ten_percentage" placeholder="10th_Percentage"/>
+		    <field name="tweleve_percentage" placeholder="12th_Percentage"/>
+		    <field name="spi" placeholder="SPI"/>
+		    <field name="cpi" placeholder="CPI"/>
+		</group>
+		<group>
+		    <field name="city" widget="selection"/> 
+		    <field name="district" placeholder="District" widget="selection"/>
+		    <field name="state" placeholder="State" widget="selection"/>
+		    <field name="pincode" placeholder="Pincode"/>
+		    <field name="area_of_interest" placeholder="Area_of_Interest"/>
+		    <field name="mobile_no" placeholder="Mobile_No"/>
+		    <field name="father_name" placeholder="Father_Name"/>
+		    <field name="father_occupation" placeholder="Father_Occupation"/>
+		    <field name="father_contact" placeholder="Father_Contact"/>
+		    <field name="mother_name" placeholder="Mother_Name"/>
+		    <field name="mother_occupation" placeholder="Mother_Occupation"/>
+		    <field name="total_income" placeholder="Total_Income"/>
+		</group>
+	</group>	
+	</sheet>
+	    </form>
+	</field>
+    </record>
+
+   <!-- Tree View -->
+    <record id="view_student_personal_details_tree" model="ir.ui.view">
+        <field name="name">student.personal.details.form.tree</field>
+        <field name="model">student.personal.details</field>
+        <field name="arch" type="xml">
+            <tree string="Student Deatils">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="postal_address"/>
+                <field name="personal_address"/>
+                <field name="course"/>
+		<field name="branch"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- Calendar -->
+    <record id="view_student_detail_calendar" model="ir.ui.view">
+        <field name="name">student.personal.details.calendar</field>
+        <field name="model">student.personal.details</field>
+        <field name="arch" type="xml">
+            <calendar string="Student" color="id" date_start="create_date">
+                <field name="name"/>
+                <field name="email"/>
+            </calendar>
+        </field>
+    </record>
+
+ <!-- Pivot view -->
+    <record id="view_student_pivot" model="ir.ui.view">
+        <field name="name">student.personal.details.pivot</field>
+        <field name="model">student.personal.details</field>
+        <field name="arch" type="xml">
+            <pivot string="Student" display_quantity="True">
+                <field name="name"/>
+            </pivot>
+        </field>
+    </record>
+
+ 
+
+<!-- Graph view -->
+    <record id="view_student_graph" model="ir.ui.view">
+        <field name="name">student.personal.details.graph</field>
+        <field name="model">student.personal.details</field>
+        <field name="arch" type="xml">
+            <graph string="Student">
+                <field name="name"/>
+            </graph>
+        </field>
+    </record>
+
+<!--kanban view-->
+<record model="ir.ui.view" id="view_student_personal_details_kanban">
+        <field name="name">student.personal.details.kanban</field>
+        <field name="model">student.personal.details</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="image"/>
+                <field name="email"/>
+                <field name="mobile_no"/>
+		<field name="branch"/>
+		<templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_ccrm_kanban">
+                            <div class="o_kanban_image">
+                                <t t-if="record.image.raw_value">
+                                    <img t-att-src="kanban_image('student.personal.details', 'image', record.id.raw_value)"/>
+                                </t>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title o_student_heading"><field name="name"/></strong>
+                                <ul>
+                                    <li t-if="record.email.raw_value" class="o_text_overflow"><field name="email"/></li><br/>
+                                    <li t-if="record.mobile_no.raw_value" class="o_text_overflow"><field name="mobile_no"/></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+ <!-- Search  -->
+    <record id="view_student_personal_details_filter" model="ir.ui.view">
+        <field name="name">student.personal.details.select</field>
+        <field name="model">student.personal.details</field>
+        <field name="arch" type="xml">
+            <search string="Search Student">
+                <field name="name" filter_domain="[('name','ilike',self)]" string="Student"/>
+                <filter name="branch" string="Branch" domain="[('branch','in',('computer', 'electrical','civil','mechanical'))]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter name="branch" string="Branch" context="{'group_by':'branch'}"/>
+                </group>
+           </search>
+        </field>
+    </record>
+
+
+<!-- action -->
+    <record id="action_student_detail" model="ir.actions.act_window">
+        <field name="name">Student</field>
+        <field name="res_model">student.personal.details</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,calendar,tree,form,pivot,graph</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a Student in your address book.
+          </p><p>
+            Odoo helps you easily track all activities related to
+            a Student.
+          </p>
+        </field>
+    </record>
+ <!-- Menu -->
+    <menuitem action="action_student_detail" id="menu_student_form_action" parent="menu_student_info" sequence="2"/>
+
+  </data>
+</odoo>
