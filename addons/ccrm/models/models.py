@@ -5,7 +5,7 @@ from odoo import models, fields, api
 class Student(models.Model):
 	_name ='student.personal.details'
 	_description='Student  Detail'
-	
+
 	name=fields.Char(required=True,index=True,translate=True)
 	display_name = fields.Char(store=True, index=True)
 	email = fields.Char()
@@ -67,7 +67,7 @@ class Company(models.Model):
 
 	name=fields.Char()
 	company_name=fields.Char()
-	contact_person=fields.Char()	
+	contact_person=fields.Char()
 	designation=fields.Char()
 	email=fields.Char()
 	hr_name=fields.Char()
@@ -77,15 +77,3 @@ class Company(models.Model):
 	email_hr=fields.Char()
 	remarks=fields.Char()
 	image=fields.Binary("image")
-
-#class ccrm(models.Model):
-#	_name = 'ccrm.ccrm'
-
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
