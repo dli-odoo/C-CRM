@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+    <!--<menuitem name="CCRM" id="base.menu_student_root" web_icon="purchase,static/description/icon.png" sequence="99"/>-->
+
+        <!-- menu categories -->
+        <menuitem name="Company Portal" id="menu_company_info" parent="base.menu_student_root" sequence="2"/>
+
+        <record id="view_company_details_form" model="ir.ui.view">
+        <field name="name">company.details.form</field>
+        <field name="model">company.details</field>
+        <field name="arch" type="xml">
+            <form string="Company">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_name" placeholder="Company_Name"/>
+                            <field name="contact_person" placeholder="Contact_Person"/>
+                            <field name="designation" placeholder="Designation"/>
+                            <field name="email" placeholder="email"/>
+                        </group>
+                        <group>
+                            <field name="hr_name" placeholder="HR_Name"/>
+                            <field name="mobile_no" placeholder="Mobile_No"/>
+                            <field name="address" placeholder="Address"/>
+                            <field name="location" placeholder="Location"/>
+                            <field name="email_hr" placeholder="Email_HR"/>
+                            <field name="remarks" placeholder="Remarks"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+        </record>
+
+    <!-- action--> 
+        <record id="action_company_detail" model="ir.actions.act_window">
+            <field name="name">Company</field>
+            <field name="res_model">company.details</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a Student in your address book.
+              </p><p>
+                Odoo helps you easily track all activities related to
+                a Student.
+              </p>
+            </field>
+        </record>
+
+
+     <!-- Menu -->
+       <menuitem action="action_company_detail" id="menu_company_form_action" parent="menu_company_info" sequence="2"/>
+
+
+    </data>
+</odoo>
+
